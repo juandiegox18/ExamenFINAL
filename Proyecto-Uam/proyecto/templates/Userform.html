@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% extends "base.html" %} {% block content %} {% if titulo == "REGISTER"%}
+    <div class="container m-4">
+      <div class="jumbotron">
+        <form action="{{url_for('registerapi')}}" method="POST">
+          <h3 class="text-center display-3">{{titulo}}</h3>
+          <!-- Campo -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Username</span
+              >
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+              name="username"
+            />
+          </div>
+          <!-- Fin Campo -->
+          <!-- Campo -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Right</span
+              >
+            </div>
+            {% if current_user.right == "Admin" %}
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+              name="right"
+              value="{{current_user.right}}"
+              readonly
+            />
+            {% endif %}
+            <select class="form-control" name="right">
+              {% for item in items %}
+              <option value="{{ item }}">{{ item}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <!-- Fin Campo -->
+          <!-- Campo -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Password</span
+              >
+            </div>
+            <input
+              type="password"
+              class="form-control"
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+              name="password"
+              required
+            />
+          </div>
+          <!-- Fin Campo -->
+          <!-- Campo -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Question</span
+              >
+            </div>
+            <select class="form-control" name="question">
+              {% for question in questions %}
+              <option value="{{ question }}">{{ question }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <!-- Fin Campo -->
+          <!-- Campo -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Answer</span
+              >
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+              name="answer"
+              required
+            />
+          </div>
+          <!-- Fin Campo -->
+          <!-- Campo -->
+          <div class="form-group mb-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          <!-- Fin Campo -->
+        </form>
+      </div>
+    </div>
+    {% endif %} {% endblock %}
+  </body>
+</html>

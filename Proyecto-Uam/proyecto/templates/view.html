@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Info</title>
+  </head>
+  <body>
+    {% extends "base.html" %} {% block content %}
+    <div>
+      {% if titulo == "TEAM" %}
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8 mb-4">
+          <div class="jumbotron">
+            <form action="/team/{{datos.id}}" method="POST">
+              <h3 class="text-center display-3">{{titulo}}</h3>
+              <!-- Campo -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default"
+                    >description</span
+                  >
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  value="{{datos.description}}"
+                  name="description"
+                />
+              </div>
+              <!-- Fin Campo -->
+              <!-- Campo -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default"
+                    >Right</span
+                  >
+                </div>
+                <select class="form-control" name="right">
+                  {% for item in items %} {% if datos.right == item%}
+                  <option value="{{ item }}" selected>{{item}}</option>
+                  {% else %}
+                  <option value="{{ item }}">{{ item}}</option>
+                  {% endif %} {% endfor %}
+                </select>
+              </div>
+              <!-- Fin Campo -->
+              <!-- Campo -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default"
+                    >Creation Date</span
+                  >
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  value="{{datos.creationDate}}"
+                  name="date"
+                  readonly
+                />
+              </div>
+              <!-- Fin Campo -->
+              <!-- Campo -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default"
+                    >Image</span
+                  >
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default"
+                  value="{{datos.imagePath}}"
+                  name="imagePath"
+                />
+              </div>
+              <!-- Fin Campo -->
+              <!-- Campo -->
+              <div class="form-group mb-3">
+                <button type="submit" class="btn btn-primary">EDIT</button>
+              </div>
+              <!-- Fin Campo -->
+            </form>
+          </div>
+        </div>
+      </div>
+      {% elif titulo == "LOG" %}
+      <div class="container">
+        <div class="jumbotron">
+          <h3 class="text-center display-3">{{titulo}}</h3>
+          <!-- Campo -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Log</span
+              >
+            </div>
+            <textarea
+              class="form-control"
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+              readonly
+            >
+          {{datos.log}}</textarea
+            >
+          </div>
+          <!-- Fin Campo -->
+          <!-- Campo -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Date</span
+              >
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+              value="{{datos.date}}"
+              readonly
+            />
+          </div>
+          <!-- Fin Campo -->
+          <!-- Campo -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Team</span
+              >
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+              value="{{datos.team_id}}"
+              readonly
+            />
+          </div>
+          <!-- Fin Campo -->
+        </div>
+      </div>
+
+      {% elif titulo == "USER" %}
+      <div class="container m-4">
+        <div class="jumbotron">
+          <form action="/user/{{datos.id}}" method="POST">
+            <h3 class="text-center display-3">{{titulo}}</h3>
+            <!-- Campo -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >Username</span
+                >
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                value="{{datos.username}}"
+                name="username"
+              />
+            </div>
+            <!-- Fin Campo -->
+            <!-- Campo -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >Right</span
+                >
+              </div>
+              <select class="form-control" name="right">
+                {% for item in items %} {% if datos.right == item%}
+                <option value="{{ item }}" selected>{{item}}</option>
+                {% else %}
+                <option value="{{ item }}">{{ item}}</option>
+                {% endif %} {% endfor %}
+              </select>
+            </div>
+            <!-- Fin Campo -->
+            <!-- Campo -->
+            <div class="form-group mb-3">
+              <button type="submit" class="btn btn-primary">EDIT</button>
+            </div>
+            <!-- Fin Campo -->
+          </form>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    {% endblock %}
+  </body>
+</html>

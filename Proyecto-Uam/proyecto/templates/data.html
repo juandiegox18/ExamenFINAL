@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data</title>
+  </head>
+  <body>
+    {% extends "base.html" %} {% block content %}
+    <div class="container mb-4">
+      <h2 class="text-center display-3">{{titulo}}</h2>
+      <table class="table table-hover table-dark m-2">
+        {% if titulo == "LOGS" %}
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">LOG</th>
+            <th scope="col">DATE</th>
+            <th scope="col">TEAM</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for dato in datos %}
+          <tr>
+            <td>{{dato.id}}</td>
+            <td>{{dato.log}}</td>
+            <td>{{dato.date}}</td>
+            <td>{{dato.team_id}}</td>
+            <td>
+              <a class="btn btn-info btn-xs" href="/log/{{dato.id}}">Watch</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        {% elif titulo == "TEAMS" %}
+        <div>
+          <a class="btn btn-success" href="/saveTeam">New Team</a>
+        </div>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">DESCRIPTION</th>
+            <th scope="col">RIGHT</th>
+            <th scope="col">IMG</th>
+            <th scope="col">CREATION DATE</th>
+            <th scope="col">UPDATE DATE</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for dato in datos %}
+          <tr>
+            <td>{{dato.id}}</td>
+            <td>{{dato.description}}</td>
+            <td>{{dato.right}}</td>
+            <td>{{dato.imagePath}}</td>
+            <td>{{dato.creationDate}}</td>
+            <td>{{dato.updateDate}}</td>
+            <td>
+              <a class="btn btn-info btn-xs" href="/team/{{dato.id}}">Watch</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        {% elif titulo == "USERS" %}
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">USERNAME</th>
+            <th scope="col">RIGHT</th>
+            <th scope="col">ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for dato in datos %}
+          <tr>
+            <td>{{dato.id}}</td>
+            <td>{{dato.username}}</td>
+            <td>{{dato.right}}</td>
+            <td>
+              <a class="btn btn-info btn-xs" href="/user/{{dato.id}}">Watch</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        {% endif %}
+      </table>
+    </div>
+
+    {% endblock %}
+  </body>
+</html>
